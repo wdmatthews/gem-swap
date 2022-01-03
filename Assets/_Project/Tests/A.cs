@@ -2,7 +2,8 @@ namespace GemSwap.Tests
 {
     public static class A
     {
-        public static GemSOBuilder GemSO => new GemSOBuilder();
-        public static GemBuilder Gem => new GemBuilder();
+        public static GemSOBuilder GemSO => new();
+        public static GemBuilder Gem => new();
+        public static GemGridBuilder GemGrid => new();
     }
 }
