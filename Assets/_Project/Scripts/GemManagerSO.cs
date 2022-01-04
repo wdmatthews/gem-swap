@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GemSwap
 {
-    [CreateAssetMenu(fileName = "Gem Manager", menuName = "Gem Swap/Gem Manager")]
+    [CreateAssetMenu(fileName = "GemManager", menuName = "Gem Swap/Gem Manager")]
     public class GemManagerSO : ScriptableObject
     {
         [SerializeField] private Vector2 _gridZeroWorldPosition;
@@ -12,13 +12,14 @@ namespace GemSwap
         [SerializeField] private GemSO[] _gemData;
 
 
-        private GemGrid _grid;
-        private List<Gem> _activeGems;
-        private Stack<Gem> _inactiveGems;
-        private int _fallingGemCount;
-        private bool _shouldRemoveGems;
-        private System.Action<int> _onGemsRemoved;
-        private System.Action _endGame;
+        [System.NonSerialized] private GemGrid _grid;
+        [System.NonSerialized] private List<Gem> _activeGems;
+        [System.NonSerialized] private List<Gem> _gemsInMatch;
+        [System.NonSerialized] private Stack<Gem> _inactiveGems;
+        [System.NonSerialized] private int _fallingGemCount;
+        [System.NonSerialized] private bool _shouldRemoveGems;
+        [System.NonSerialized] private System.Action<int> _onGemsRemoved;
+        [System.NonSerialized] private System.Action _endGame;
 
         public Vector2Int GridSize => _gridSize;
         public GemGrid Grid => _grid;
@@ -29,6 +30,7 @@ namespace GemSwap
             _endGame = endGame;
             _grid = new GemGrid(_gridZeroWorldPosition, _gridSize);
             _activeGems = new List<Gem>();
+            _gemsInMatch = new List<Gem>();
 
             if (!keepInactiveGems)
             {
@@ -67,11 +69,11 @@ namespace GemSwap
                 _grid.SwapGems(position1, position2);
                 _shouldRemoveGems = true;
 
-
+                
             }
             else
             {
-
+                
             }
         }
 
@@ -90,6 +92,7 @@ namespace GemSwap
             foreach (Gem gem in _activeGems)
             {
                 _inactiveGems.Push(gem);
+                gem.Remove();
             }
 
             _activeGems.Clear();
@@ -127,30 +130,37 @@ namespace GemSwap
             return gem;
         }
 
-        private void RemoveGem(Vector2Int position)
+        private void RemoveGem(Gem gem)
         {
-            Gem gem = _grid.GetGem(position);
             _inactiveGems.Push(gem);
             gem.Remove();
-            _grid.RemoveGem(position);
+            _grid.RemoveGem(gem.Position);
         }
 
         private void RemoveMatchedGems()
         {
             _shouldRemoveGems = false;
             int removedGemCount = 0;
+            _gemsInMatch.Clear();
 
             for (int i = _activeGems.Count - 1; i >= 0; i--)
             {
-                Vector2Int position = _activeGems[i].Position;
+                Gem gem = _activeGems[i];
+                Vector2Int position = gem.Position;
                 if (!_grid.IsInLine(position)) continue;
+                _gemsInMatch.Add(gem);
+            }
+
+            foreach (Gem gem in _gemsInMatch)
+            {
                 removedGemCount++;
-                RemoveGem(position);
+                RemoveGem(gem);
             }
 
             if (removedGemCount > 0)
             {
                 MakeGemsFall();
+                MakeNewGemsFall();
                 _onGemsRemoved?.Invoke(removedGemCount);
 
 
@@ -176,12 +186,15 @@ namespace GemSwap
                 for (int y = 0; y < _gridSize.y; y++)
                 {
                     Vector2Int position = new(x, y);
+                    Gem gem = _grid.GetGem(position);
+                    if (!gem) continue;
                     (bool gemCanFall, Vector2Int positionAfterFall) = _grid.GemCanFall(position);
                     if (!gemCanFall) continue;
                     _fallingGemCount++;
-                    _grid.GetGem(position).FallTo(positionAfterFall,
+                    gem.FallTo(positionAfterFall,
                         _grid.GridToWorldPosition(positionAfterFall),
                         OnGemStoppedFalling);
+                    _grid.MakeGemFallTo(position, positionAfterFall);
                 }
             }
         }
@@ -190,22 +203,13 @@ namespace GemSwap
         {
             for (int x = 0; x < _gridSize.x; x++)
             {
-                for (int y = _gridSize.y - 1; y >= 0; y--)
+                for (int y = 0; y < _gridSize.y; y++)
                 {
                     Vector2Int position = new(x, y);
                     if (_grid.GetGem(position)) continue;
-                    (bool gemCanFall, Vector2Int positionAfterFall) = _grid.GemCanFall(position);
-
-                    if (gemCanFall || position.y == _gridSize.y - 1)
-                    {
-                        Gem gem = PlaceGem(position,
-                            _grid.GridToWorldPosition(new Vector2Int(position.x, position.y + _gridSize.y)));
-                        gem.FallTo(positionAfterFall, _grid.GridToWorldPosition(positionAfterFall));
-                    }
-                    else
-                    {
-                        PlaceGem(position, _grid.GridToWorldPosition(position));
-                    }
+                    Gem gem = PlaceGem(position, _grid.GridToWorldPosition(
+                        new Vector2Int(position.x, position.y + _gridSize.y)));
+                    gem.FallTo(position, _grid.GridToWorldPosition(position));
                 }
             }
         }

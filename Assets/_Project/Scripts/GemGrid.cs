@@ -82,6 +82,13 @@ namespace GemSwap
             return (true, positionAfterFall);
         }
 
+        public void MakeGemFallTo(Vector2Int position, Vector2Int positionAfterFall)
+        {
+            Gem gem = GetGem(position);
+            _gems[GetIndexFromPosition(position)] = null;
+            _gems[GetIndexFromPosition(positionAfterFall)] = gem;
+        }
+
         public void RemoveGem(Vector2Int position)
         {
             _gems[GetIndexFromPosition(position)] = null;

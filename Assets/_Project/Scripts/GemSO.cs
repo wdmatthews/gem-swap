@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GemSwap
 {
-    [CreateAssetMenu(fileName = "New Gem", menuName = "Gem Swap/Gem")]
+    [CreateAssetMenu(fileName = "NewGem", menuName = "Gem Swap/Gem")]
     public class GemSO : ScriptableObject
     {
         [SerializeField] private Mesh _mesh;

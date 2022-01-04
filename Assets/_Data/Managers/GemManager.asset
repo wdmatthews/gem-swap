@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40db075c86c74410dad79caebe435025, type: 3}
-  m_Name: Gem Manager
+  m_Name: GemManager
   m_EditorClassIdentifier: 
   _gridZeroWorldPosition: {x: -2, y: -2}
   _gridSize: {x: 5, y: 5}

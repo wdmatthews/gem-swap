@@ -298,6 +298,35 @@ namespace GemSwap.Tests
             }
         }
 
+        public class MakeGemFallTo
+        {
+            [Test]
+            public void PlacesInNewPosition([Values(1, 2)] int y)
+            {
+                Vector2Int position = new(0, y);
+                Vector2Int positionAfterFall = new(0, 0);
+                GemGrid gemGrid = ADefault.GemGrid;
+                Gem gem = ADefault.Gem;
+                gemGrid.PlaceGem(gem, position);
+
+                gemGrid.MakeGemFallTo(position, positionAfterFall);
+
+                Assert.AreEqual(gem, gemGrid.GetGem(positionAfterFall));
+            }
+
+            [Test]
+            public void RemovesFromOldPosition([Values(1, 2)] int y)
+            {
+                Vector2Int position = new(0, y);
+                GemGrid gemGrid = ADefault.GemGrid;
+                gemGrid.PlaceGem(ADefault.Gem, position);
+
+                gemGrid.MakeGemFallTo(position, new Vector2Int(0, 0));
+
+                Assert.IsNull(gemGrid.GetGem(position));
+            }
+        }
+
         public class RemoveGem
         {
             [Test]
