@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40db075c86c74410dad79caebe435025, type: 3}
+  m_Name: Gem Manager
+  m_EditorClassIdentifier: 
+  _gridZeroWorldPosition: {x: -2, y: -2}
+  _gridSize: {x: 5, y: 5}
+  _gemPrefab: {fileID: 4420574046170783377, guid: a7f84e518d9cd4950b183c44d6ed54d2,
+    type: 3}
+  _gemData:
+  - {fileID: 11400000, guid: d9d5d82bf330f48f892379b52a1119b2, type: 2}
+  - {fileID: 11400000, guid: 5e8d936f60faa4af9bf04f6d028491cf, type: 2}
