@@ -28,12 +28,12 @@ namespace GemSwap
         {
             _onGemsRemoved = onGemsRemoved;
             _endGame = endGame;
-            _grid = new GemGrid(_gridZeroWorldPosition, _gridSize);
             _activeGems = new List<Gem>();
             _gemsInMatch = new List<Gem>();
 
             if (!keepInactiveGems)
             {
+                _grid = new GemGrid(_gridZeroWorldPosition, _gridSize);
                 _inactiveGems = new Stack<Gem>();
             }
 
@@ -133,6 +133,7 @@ namespace GemSwap
         private void RemoveGem(Gem gem)
         {
             _inactiveGems.Push(gem);
+            _activeGems.Remove(gem);
             gem.Remove();
             _grid.RemoveGem(gem.Position);
         }

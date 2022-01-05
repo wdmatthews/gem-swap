@@ -8,7 +8,7 @@ namespace GemSwap
         [SerializeField] private int _pointsPerGem;
         [SerializeField] private AnimationCurve _pointsPerLevel;
         [SerializeField] private GameHUD _gameHUD;
-
+        [SerializeField] private GameOverScreen _gameOverScreen;
         [SerializeField] private GemManagerSO _gemManager;
 
 
@@ -21,9 +21,10 @@ namespace GemSwap
 
         public bool IsOver => _isOver;
 
-        public void Initialize(GameHUD gameHUD, System.Action onStartGame)
+        public void Initialize(GameHUD gameHUD, GameOverScreen gameOverScreen, System.Action onStartGame)
         {
             _gameHUD = gameHUD;
+            _gameOverScreen = gameOverScreen;
             _onStartGame = onStartGame;
         }
 
@@ -37,7 +38,8 @@ namespace GemSwap
             _gemManager.Initialize(OnGemsRemoved, EndGame, keepInactiveGems);
             _onStartGame?.Invoke();
             _gameHUD?.Initialize(EndGame);
-
+            _gameHUD?.Show();
+            _gameOverScreen?.Hide();
 
         }
 
@@ -45,7 +47,8 @@ namespace GemSwap
         {
             _isOver = true;
             _gemManager.RemoveAllGems();
-
+            _gameHUD?.Hide();
+            _gameOverScreen?.Show(_level, _points, StartGame);
 
         }
 

@@ -32,6 +32,16 @@ namespace GemSwap
             UpdatePointsPercentage(0);
         }
 
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            gameObject.SetActive(false);
+        }
+
         public void UpdateLevel(int level)
         {
             _levelLabel.text = $"{level}";
@@ -55,6 +65,7 @@ namespace GemSwap
 
         private void EndGame()
         {
+            CloseEndGameConfirmWindow();
             _endGame?.Invoke();
         }
     }
