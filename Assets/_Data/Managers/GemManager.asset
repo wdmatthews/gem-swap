@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40db075c86c74410dad79caebe435025, type: 3}
   m_Name: GemManager
   m_EditorClassIdentifier: 
-  _gridZeroWorldPosition: {x: -2, y: -2}
-  _gridSize: {x: 5, y: 5}
+  _gridZeroWorldPosition: {x: -3, y: -3}
+  _gridSize: {x: 7, y: 7}
   _gemPrefab: {fileID: 4420574046170783377, guid: a7f84e518d9cd4950b183c44d6ed54d2,
     type: 3}
   _gemData:
-  - {fileID: 11400000, guid: d9d5d82bf330f48f892379b52a1119b2, type: 2}
+  - {fileID: 11400000, guid: c50d9937a931448b8b4daa814e4c70a3, type: 2}
+  - {fileID: 11400000, guid: 49e7cca3589af4c6b8bd4630bd7384aa, type: 2}
+  - {fileID: 11400000, guid: 8effc3784ef6e4fca843d18a6c8fbcc7, type: 2}
   - {fileID: 11400000, guid: 5e8d936f60faa4af9bf04f6d028491cf, type: 2}
+  - {fileID: 11400000, guid: d9d5d82bf330f48f892379b52a1119b2, type: 2}
+  - {fileID: 11400000, guid: 2adeb0ef0ff714f7c93a1f2cdc199509, type: 2}
+  - {fileID: 11400000, guid: ba00737a6d48540b08de51c25a6dbebe, type: 2}
   _audioManager: {fileID: 11400000, guid: a994ace8a111c4f988be066bd438192a, type: 2}

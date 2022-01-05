@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46dbc899ae8d48288ed50adc3111ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gravityScale: 2
-  _swapSpeed: 2
+  _gravityScale: 3
+  _swapSpeed: 5
   _meshFilter: {fileID: 4420574046170783380}
   _renderer: {fileID: 4420574046170783381}
   _rigidbody: {fileID: 4420574046170783382}
