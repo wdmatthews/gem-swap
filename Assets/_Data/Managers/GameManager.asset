@@ -64,4 +64,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _gameHUD: {fileID: 0}
+  _gameOverScreen: {fileID: 0}
   _gemManager: {fileID: 11400000, guid: f5bd4b6adaa704cc3be54b97d51f4778, type: 2}
+  _audioManager: {fileID: 11400000, guid: a994ace8a111c4f988be066bd438192a, type: 2}

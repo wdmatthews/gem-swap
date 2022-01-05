@@ -19,3 +19,4 @@ MonoBehaviour:
   _gemData:
   - {fileID: 11400000, guid: d9d5d82bf330f48f892379b52a1119b2, type: 2}
   - {fileID: 11400000, guid: 5e8d936f60faa4af9bf04f6d028491cf, type: 2}
+  _audioManager: {fileID: 11400000, guid: a994ace8a111c4f988be066bd438192a, type: 2}

@@ -10,7 +10,7 @@ namespace GemSwap
         [SerializeField] private Vector2Int _gridSize;
         [SerializeField] private Gem _gemPrefab;
         [SerializeField] private GemSO[] _gemData;
-
+        [SerializeField] private AudioManagerSO _audioManager;
 
         [System.NonSerialized] private GemGrid _grid;
         [System.NonSerialized] private List<Gem> _activeGems;
@@ -68,12 +68,11 @@ namespace GemSwap
                 gem2.SwapTo(position1, _grid.GridToWorldPosition(position1));
                 _grid.SwapGems(position1, position2);
                 _shouldRemoveGems = true;
-
-                
+                _audioManager?.PlaySuccessfulSwapEffect();
             }
             else
             {
-                
+                _audioManager?.PlayInvalidSwapEffect();
             }
         }
 
@@ -163,8 +162,7 @@ namespace GemSwap
                 MakeGemsFall();
                 MakeNewGemsFall();
                 _onGemsRemoved?.Invoke(removedGemCount);
-
-
+                _audioManager?.PlayGemsRemovedEffect();
             }
         }
 

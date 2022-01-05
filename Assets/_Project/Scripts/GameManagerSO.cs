@@ -7,10 +7,8 @@ namespace GemSwap
     {
         [SerializeField] private int _pointsPerGem;
         [SerializeField] private AnimationCurve _pointsPerLevel;
-        [SerializeField] private GameHUD _gameHUD;
-        [SerializeField] private GameOverScreen _gameOverScreen;
         [SerializeField] private GemManagerSO _gemManager;
-
+        [SerializeField] private AudioManagerSO _audioManager;
 
         [System.NonSerialized] private bool _isOver;
         [System.NonSerialized] private int _points;
@@ -18,6 +16,8 @@ namespace GemSwap
         [System.NonSerialized] private int _pointsNeededToLevelUp;
         [System.NonSerialized] private int _lastPointsNeededToLevelUp;
         [System.NonSerialized] private System.Action _onStartGame;
+        [System.NonSerialized] private GameHUD _gameHUD;
+        [System.NonSerialized] private GameOverScreen _gameOverScreen;
 
         public bool IsOver => _isOver;
 
@@ -40,7 +40,7 @@ namespace GemSwap
             _gameHUD?.Initialize(EndGame);
             _gameHUD?.Show();
             _gameOverScreen?.Hide();
-
+            _audioManager?.PlayGameMusic();
         }
 
         public void EndGame()
@@ -49,7 +49,7 @@ namespace GemSwap
             _gemManager.RemoveAllGems();
             _gameHUD?.Hide();
             _gameOverScreen?.Show(_level, _points, StartGame);
-
+            _audioManager?.PlayGameOverMusic();
         }
 
         private void LevelUp()
@@ -61,7 +61,7 @@ namespace GemSwap
             _pointsNeededToLevelUp = Mathf.RoundToInt(_pointsPerLevel.Evaluate(clampedLevel))
                 + (_level > maxLevel ? _lastPointsNeededToLevelUp : 0);
             _gameHUD?.UpdateLevel(_level);
-
+            _audioManager?.PlayLevelUpEffect();
         }
 
         private void OnGemsRemoved(int gemCount)
