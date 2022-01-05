@@ -8,7 +8,7 @@ namespace GemSwap
     {
         [SerializeField] private GemManagerSO _gemManager;
         [SerializeField] private GameManagerSO _gameManager;
-
+        [SerializeField] private GameHUD _gameHUD;
 
         [SerializeField] private float _cursorZPosition;
         [SerializeField] private Transform _cursor;
@@ -20,7 +20,7 @@ namespace GemSwap
 
         private void Start()
         {
-            _gameManager.Initialize(OnStartGame);
+            _gameManager.Initialize(_gameHUD, OnStartGame);
             _gameManager.StartGame();
         }
 
