@@ -161,8 +161,8 @@ namespace GemSwap
             {
                 MakeGemsFall();
                 MakeNewGemsFall();
-                _onGemsRemoved?.Invoke(removedGemCount);
                 _audioManager?.PlayGemsRemovedEffect();
+                _onGemsRemoved?.Invoke(removedGemCount);
             }
         }
 

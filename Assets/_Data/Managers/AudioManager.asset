@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14164728b27764ad4b003e9fdc809e8e, type: 3}
   m_Name: AudioManager
   m_EditorClassIdentifier: 
-  _menuMusic: {fileID: 0}
-  _gameMusic: {fileID: 0}
-  _gameOverMusic: {fileID: 0}
-  _successfulSwapEffect: {fileID: 0}
-  _invalidSwapEffect: {fileID: 0}
-  _gemsRemovedEffect: {fileID: 0}
-  _levelUpEffect: {fileID: 0}
+  _menuMusic: {fileID: 8300000, guid: 679c6b027fd25470286fe5f199c0d44b, type: 3}
+  _gameMusic: {fileID: 8300000, guid: 8b8ab71ffffc24e5582de0192d9dcee8, type: 3}
+  _gameOverMusic: {fileID: 8300000, guid: 7260829b8135b472e817c648b7ea4aa8, type: 3}
+  _successfulSwapEffect: {fileID: 8300000, guid: 1e6c356d5843c40c8a232158dc6af52a,
+    type: 3}
+  _invalidSwapEffect: {fileID: 8300000, guid: 77ba63a0124fd479da19e0a4207bedf2, type: 3}
+  _gemsRemovedEffect: {fileID: 8300000, guid: 3c1de4fe05be44abe9dfc42da59d5269, type: 3}
+  _levelUpEffect: {fileID: 8300000, guid: d9c171832cd5c4023b8274b926f924a8, type: 3}
