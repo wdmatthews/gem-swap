@@ -49,7 +49,9 @@ namespace GemSwap.Tests
             Gem gem = gameObject.AddComponent<Gem>();
 
             SerializedObject so = new SerializedObject(gem);
-            so.FindProperty("_gravityScale")
+            so.FindProperty("_minGravityScale")
+                .floatValue = _gravityScale;
+            so.FindProperty("_maxGravityScale")
                 .floatValue = _gravityScale;
             so.FindProperty("_swapSpeed")
                 .floatValue = _swapSpeed;

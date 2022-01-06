@@ -5,7 +5,8 @@ namespace GemSwap
     [AddComponentMenu("Gem Swap/Gem")]
     public class Gem : MonoBehaviour
     {
-        [SerializeField] private float _gravityScale;
+        [SerializeField] private float _minGravityScale;
+        [SerializeField] private float _maxGravityScale;
         [SerializeField] private float _swapSpeed;
         [SerializeField] private MeshFilter _meshFilter;
         [SerializeField] private MeshRenderer _renderer;
@@ -57,7 +58,7 @@ namespace GemSwap
             _position = gridPosition;
             _targetPosition = worldPosition;
             _rigidbody.WakeUp();
-            _rigidbody.gravityScale = _gravityScale;
+            _rigidbody.gravityScale = Random.Range(_minGravityScale, _maxGravityScale);
             _onStoppedFalling = onStoppedFalling;
         }
 
