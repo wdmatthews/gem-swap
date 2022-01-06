@@ -12,50 +12,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1f07dac1dfdd4dce9d192e713d42ed3, type: 3}
   m_Name: GameManager
   m_EditorClassIdentifier: 
-  _pointsPerGem: 1
+  _pointsPerGem: 5
   _pointsPerLevel:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 1
-      value: 5
+      value: 150
       inSlope: 5
-      outSlope: 5
+      outSlope: 150
       tangentMode: 69
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 2
-      value: 10
-      inSlope: 5
-      outSlope: 5
+      value: 300
+      inSlope: 150
+      outSlope: 200
       tangentMode: 69
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0
     - serializedVersion: 3
       time: 3
-      value: 15
-      inSlope: 5
-      outSlope: 5
+      value: 500
+      inSlope: 200
+      outSlope: 200
       tangentMode: 69
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 4
-      value: 20
-      inSlope: 5
-      outSlope: 5
+      value: 700
+      inSlope: 200
+      outSlope: 300
       tangentMode: 69
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 5
-      value: 25
-      inSlope: 5
+      value: 1000
+      inSlope: 300
       outSlope: 0
       tangentMode: 69
       weightedMode: 0
@@ -64,7 +64,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _gameHUD: {fileID: 0}
-  _gameOverScreen: {fileID: 0}
   _gemManager: {fileID: 11400000, guid: f5bd4b6adaa704cc3be54b97d51f4778, type: 2}
   _audioManager: {fileID: 11400000, guid: a994ace8a111c4f988be066bd438192a, type: 2}
