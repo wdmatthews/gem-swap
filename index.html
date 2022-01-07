@@ -3,21 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height">
     <title>Gem Swap</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
   </head>
-  <body>
-    <canvas id="unity-canvas" width="960" height="540"></canvas>
+  <body style="margin: 0px; padding: 0px; text-align: center">
+    <canvas id="unity-canvas" style="width: 100vw; height: 100vh;"></canvas>
+    <script src="./Builds/GemSwap/GemSwap.loader.js"></script>
     <script>
-      const canvas = document.querySelector('#unity-canvas')
-      
       const buildUrl = './Builds/GemSwap'
-      const config = {
+      
+      createUnityInstance(document.querySelector("#unity-canvas"), {
         dataUrl: `${buildUrl}/GemSwap.data`,
         frameworkUrl: `${buildUrl}/GemSwap.framework.js`,
         codeUrl: `${buildUrl}/GemSwap.wasm`,
@@ -26,22 +21,7 @@
         productName: 'GemSwap',
         productVersion: '1.0.0',
         showBanner: (message, type) => console.log(type, message),
-      }
-      
-      // canvas.setAttribute('width', window.innerWidth)
-      // canvas.setAttribute('height', window.innerHeight)
-      
-      const script = document.createElement('script')
-      script.src = `${buildUrl}/GemSwap.loader.js`
-      script.onload = async () => {
-        try {
-          await createUnityInstance(canvas, config, (progress) => {})
-        } catch (error) {
-          alert(error)
-        }
-      }
-      
-      document.body.appendChild(script)
+      })
     </script>
   </body>
 </html>
