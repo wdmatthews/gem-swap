@@ -159,6 +159,7 @@ namespace GemSwap
 
             if (removedGemCount > 0)
             {
+                _fallingGemCount = 0;
                 MakeGemsFall();
                 MakeNewGemsFall();
                 _audioManager?.PlayGemsRemovedEffect();
@@ -178,8 +179,6 @@ namespace GemSwap
 
         private void MakeGemsFall()
         {
-            _fallingGemCount = 0;
-
             for (int x = 0; x < _gridSize.x; x++)
             {
                 for (int y = 0; y < _gridSize.y; y++)
@@ -208,7 +207,8 @@ namespace GemSwap
                     if (_grid.GetGem(position)) continue;
                     Gem gem = PlaceGem(position, _grid.GridToWorldPosition(
                         new Vector2Int(position.x, position.y + _gridSize.y)));
-                    gem.FallTo(position, _grid.GridToWorldPosition(position));
+                    _fallingGemCount++;
+                    gem.FallTo(position, _grid.GridToWorldPosition(position) , OnGemStoppedFalling);
                 }
             }
         }
